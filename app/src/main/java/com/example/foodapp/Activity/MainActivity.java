@@ -38,5 +38,46 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //
+        android.widget.ImageView imageView73=findViewById(R.id.imageView73);
+        imageView73.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HotdogActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        android.widget.ImageView imageView733=findViewById(R.id.imageView733);
+        imageView733.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DetailActivity1.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        //Chuyen sang tra support
+        android.widget.ImageView imageView888=findViewById(R.id.imageView888);
+        imageView888.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SupportActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Chuyen sang trang settings
+        android.widget.ImageView imageView8=findViewById(R.id.imageView8);
+        imageView8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
