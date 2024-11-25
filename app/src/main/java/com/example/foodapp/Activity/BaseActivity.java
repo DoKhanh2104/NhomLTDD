@@ -5,19 +5,26 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodapp.R;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class BaseActivity extends AppCompatActivity {
+    FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    public String TAG="uilover";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        database=FirebaseDatabase.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
+
+
+
     }
 
-    protected void navigateToLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-    protected void navigateToSignUp() {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
+
 }

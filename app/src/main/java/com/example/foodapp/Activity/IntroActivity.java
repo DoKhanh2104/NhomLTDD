@@ -1,5 +1,7 @@
 package com.example.foodapp.Activity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import androidx.activity.EdgeToEdge;
@@ -16,25 +18,24 @@ public class IntroActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-
+        getWindow().setStatusBarColor(Color.parseColor("#FFE4B5"));
         binding = ActivityIntroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setVariable();
 
-        // Xử lý sự kiện cho nút login
-        binding.loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToLogin();
-            }
-        });
 
-        // Xử lý sự kiện cho nút signup
-        binding.signupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToSignUp();
-            }
-        });
     }
+
+    private void setVariable() {
+        binding.loginBtn.setOnClickListener(view -> {
+            if(mAuth.getCurrentUser()!=null){
+                startActivity(new Intent(IntroActivity.this,MainActivity.class));
+            }else{
+                startActivity(new Intent(IntroActivity.this,LoginActivity.class));
+            }
+        });
+
+        binding.signupBtn.setOnClickListener(view -> startActivity(new Intent(IntroActivity.this,SignUpActivity.class)));
+    }
+
 }

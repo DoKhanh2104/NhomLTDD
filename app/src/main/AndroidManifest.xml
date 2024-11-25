@@ -13,22 +13,31 @@
         android:theme="@style/Theme.FoodApp"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.DetailActivity1"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.HotdogActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activity.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.SupportActivity"
+            android:name=".Activity.LikeActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.CartActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ListFoodsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ListFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DetailActivity1"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.HotdogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SupportActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"

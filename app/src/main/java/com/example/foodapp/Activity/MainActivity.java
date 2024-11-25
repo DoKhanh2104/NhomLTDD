@@ -1,83 +1,207 @@
 package com.example.foodapp.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodapp.Adapter.BestFoodsAdapter;
+import com.example.foodapp.Adapter.CategoryAdapter;
+import com.example.foodapp.Domain.Category;
+import com.example.foodapp.Domain.Foods;
+import com.example.foodapp.Domain.Location;
+import com.example.foodapp.Domain.Price;
+import com.example.foodapp.Domain.Time;
 import com.example.foodapp.R;
+import com.example.foodapp.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class MainActivity extends BaseActivity {
+private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding =ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        //Chuyen sang trang Gio Hang
-        android.widget.ImageView imageView100=findViewById(R.id.imageView100);
-        imageView100.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CartActivity.class);
+
+        initLocation();
+        initTime();
+        initPrice();
+        initBestFood();
+        initCategory();
+        setVariable();
+    }
+
+    private void setVariable() {
+        binding.logoutBtn.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        });
+
+        //Tim kiem
+        binding.searchBtn.setOnClickListener(view -> {
+            String text=binding.searchEdt.getText().toString();
+            if(!text.isEmpty()){
+                Intent intent= new Intent(MainActivity.this,ListFoodsActivity.class);
+                intent.putExtra("text",text);
+                intent.putExtra("isSearch",true);
                 startActivity(intent);
             }
         });
+        // Chuyen sang gio hang
+        binding.cartBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
 
-        //Chuyen sang trang CHI TIET
-        android.widget.ImageView imageView71=findViewById(R.id.imageView71);
-        imageView71.setOnClickListener(new View.OnClickListener() {
+        //Chuyen sang phan ho so
+        binding.filterBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SettingsActivity.class)));
+    }
+
+    private void initBestFood() {
+        DatabaseReference myRef=database.getReference("Foods");
+        binding.progressBarBestFood.setVisibility(View.VISIBLE);
+        ArrayList<Foods> list=new ArrayList<>();
+        Query query =myRef.orderByChild("BestFood").equalTo(true);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                startActivity(intent);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        list.add(issue.getValue(Foods.class));
+                    }
+                    if(list.size()>0){
+                        binding.bestFoodView.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false));
+                        RecyclerView.Adapter adapter=new BestFoodsAdapter(list);
+                        binding.bestFoodView.setAdapter(adapter);
+                    }
+                    binding.progressBarBestFood.setVisibility(View.GONE);
+                }
             }
-        });
 
-        //
-        android.widget.ImageView imageView73=findViewById(R.id.imageView73);
-        imageView73.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, HotdogActivity.class);
-                startActivity(intent);
-            }
-        });
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        android.widget.ImageView imageView733=findViewById(R.id.imageView733);
-        imageView733.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, DetailActivity1.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-        //Chuyen sang tra support
-        android.widget.ImageView imageView888=findViewById(R.id.imageView888);
-        imageView888.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SupportActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //Chuyen sang trang settings
-        android.widget.ImageView imageView8=findViewById(R.id.imageView8);
-        imageView8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
             }
         });
     }
+
+    //DANH MUC
+    private void initCategory() {
+        DatabaseReference myRef=database.getReference("Category");
+        binding.progressBarCategory.setVisibility(View.VISIBLE);
+        ArrayList<Category> list=new ArrayList<>();
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        list.add(issue.getValue(Category.class));
+                    }
+                    if(list.size()>0){
+                        binding.categoryView.setLayoutManager(new GridLayoutManager(MainActivity.this,4));
+                        RecyclerView.Adapter adapter=new CategoryAdapter(list);
+                        binding.categoryView.setAdapter(adapter);
+                    }
+                    binding.progressBarCategory.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+
+
+
+    //DIA DIEM
+    private void initLocation() {
+        DatabaseReference myRef=database.getReference("Location");
+        ArrayList<Location> list=new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for (DataSnapshot issue: snapshot.getChildren()){
+                        list.add(issue.getValue(Location.class));
+                    }
+                    ArrayAdapter<Location> adapter=new ArrayAdapter<>(MainActivity.this,R.layout.sp_item,list);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.locationSp.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    //THOI GIAN
+    private void initTime() {
+        DatabaseReference myRef=database.getReference("Time");
+        ArrayList<Time> list=new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for (DataSnapshot issue: snapshot.getChildren()){
+                        list.add(issue.getValue(Time.class));
+                    }
+                    ArrayAdapter<Time> adapter=new ArrayAdapter<>(MainActivity.this,R.layout.sp_item,list);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.timeSp.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    //GIA TIEN
+    private void initPrice() {
+        DatabaseReference myRef=database.getReference("Price");
+        ArrayList<Price> list=new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for (DataSnapshot issue: snapshot.getChildren()){
+                        list.add(issue.getValue(Price.class));
+                    }
+                    ArrayAdapter<Price> adapter=new ArrayAdapter<>(MainActivity.this,R.layout.sp_item,list);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.priceSp.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
 }

@@ -15,7 +15,7 @@
         android:layout_width="160dp"
         android:layout_height="200dp"
         android:layout_marginTop="28dp"
-        android:src="@drawable/logo_food"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,31 +23,37 @@
         app:layout_goneMarginTop="50dp" />
 
     <!-- Tên ứng dụng -->
+
+    <!-- Nhập email -->
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Food App"
-        android:textColor="#2E3A59"
+        android:textColor="@color/blue_grey"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo_image"
         app:layout_goneMarginTop="8dp" />
 
-    <!-- Nhập email -->
     <EditText
-        android:id="@+id/email_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/userEdt"
+        android:background="@drawable/edittext_background"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
-        android:backgroundTint="@color/green"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:textSize="16sp"
+        android:textColor="@color/blue_grey"
+        android:ems="10"
+        android:textAlignment="center"
         android:hint="Email Address"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:padding="10dp"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_name"
@@ -55,18 +61,22 @@
 
     <!-- Nhập mật khẩu -->
     <EditText
-        android:id="@+id/password_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/passEdt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:layout_marginEnd="32dp"
+        android:textColor="@color/blue_grey"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/green"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:background="@drawable/edittext_background"
         android:hint="Password"
         android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email_input"
+        app:layout_constraintTop_toBottomOf="@id/userEdt"
         app:layout_constraintWidth_percent="0.9" />
 
     <!-- Text quên mật khẩu -->
@@ -75,25 +85,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Forget Password?"
+        android:text="Quên mật khẩu ?"
         android:textColor="#888888"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_input" />
+        app:layout_constraintTop_toBottomOf="@id/passEdt" />
 
 
     <!-- Nút đăng nhập -->
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/login_button"
+        android:id="@+id/loginBtn"
         style="@android:style/Widget.Button"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="32dp"
         android:layout_marginTop="36dp"
-        android:background="@drawable/green_button_background"
+        android:background="@drawable/red_buuton_background"
         android:text="Login"
         android:textColor="@color/white"
+        android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -111,7 +123,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_button" />
+        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
 
     <!-- Icon mạng xã hội -->
     <LinearLayout
@@ -151,8 +163,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="You Aren't a user? Sign up"
-        android:textColor="@color/green"
+        android:text="Bạn chưa có tài khoản? Đăng kí ngay"
+        android:textColor="@color/red"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
