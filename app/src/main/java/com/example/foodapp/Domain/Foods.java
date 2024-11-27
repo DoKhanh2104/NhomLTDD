@@ -50,8 +50,8 @@ public class Foods implements Serializable {
         BestFood = bestFood;
     }
 
-    public int getId() {
-        return Id;
+    public String getId() {
+        return String.valueOf(Id);
     }
 
     public void setId(int id) {

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "356834852295",
+    "firebase_url": "https://foodapp-ltdd-default-rtdb.firebaseio.com",
     "project_id": "foodapp-ltdd",
     "storage_bucket": "foodapp-ltdd.firebasestorage.app"
   },

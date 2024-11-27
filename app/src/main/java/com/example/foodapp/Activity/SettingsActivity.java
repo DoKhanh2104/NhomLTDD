@@ -41,7 +41,12 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-    }
+        //Chuyen sang trang danh muc theo doi don hang
+        binding.ship.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, OrderActivity.class);
+            startActivity(intent);
+        });
 
+    }
 
 }
