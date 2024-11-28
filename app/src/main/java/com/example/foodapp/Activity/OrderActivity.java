@@ -1,6 +1,7 @@
 package com.example.foodapp.Activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,14 +37,19 @@ public class OrderActivity extends BaseActivity {
 
         //Truyền Context vào khi khởi tạo adapter
         orderTrackingAdapter = new OrderAdapter(orderList, this);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(orderTrackingAdapter);
 
-        loadOrders();  // Load dữ liệu đơn hàng từ Firebase
+        // Load dữ liệu đơn hàng từ Firebase
+        loadOrders();
 
-        //bị lỗi tự về trang chủ
-        //setVariable();
+        ActivityOrderBinding binding = ActivityOrderBinding.bind(findViewById(R.id.rootLayout));
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void loadOrders() {
@@ -52,7 +58,7 @@ public class OrderActivity extends BaseActivity {
         ordersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {  // Kiểm tra xem dữ liệu có tồn tại không
+                if (dataSnapshot.exists()) {
                     orderList.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Order order = snapshot.getValue(Order.class);
@@ -62,7 +68,6 @@ public class OrderActivity extends BaseActivity {
                     }
                     orderTrackingAdapter.notifyDataSetChanged();
                 } else {
-                    // Xử lý nếu không có đơn hàng nào
                     Toast.makeText(OrderActivity.this, "Không có đơn hàng nào", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -74,8 +79,4 @@ public class OrderActivity extends BaseActivity {
         });
     }
 
-    // Thiết lập các sự kiện (ví dụ: quay lại)
-    //private void setVariable() {
-    //    binding.backBtn.setOnClickListener(view -> finish());
-    //}
 }
