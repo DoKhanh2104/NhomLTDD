@@ -17,7 +17,11 @@ public class ManagmentCart {
         this.context = context;
         this.tinyDB=new TinyDB(context);
     }
-
+    public void clearCart() {
+        // Xóa danh sách giỏ hàng
+        tinyDB.putListObject("CartList", new ArrayList<Foods>());
+        //Toast.makeText(context, "Giỏ hàng đã được làm trống!", Toast.LENGTH_SHORT).show();
+    }
     public void insertFood(Foods item) {
         ArrayList<Foods> listpop = getListCart();
         boolean existAlready = false;

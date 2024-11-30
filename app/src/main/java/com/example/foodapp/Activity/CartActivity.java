@@ -1,5 +1,6 @@
 package com.example.foodapp.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -34,6 +35,15 @@ public class CartActivity extends BaseActivity {
         setVariable();
         caculateCart(); //Tinh bill
         initList(); //Hien thi danh sach
+
+        binding.orderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(CartActivity.this,OrderProgressActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initList() {

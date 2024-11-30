@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.foodapp.R;
 import com.example.foodapp.databinding.ActivitySettingsBinding;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
     ActivitySettingsBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
