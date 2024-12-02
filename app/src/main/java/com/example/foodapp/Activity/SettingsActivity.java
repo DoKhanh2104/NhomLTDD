@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.foodapp.R;
 import com.example.foodapp.databinding.ActivitySettingsBinding;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
     ActivitySettingsBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +42,6 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        //Chuyen sang trang danh muc theo doi don hang
-        binding.ship.setOnClickListener(view -> {
-            Intent intent = new Intent(SettingsActivity.this, OrderActivity.class);
-            startActivity(intent);
-        });
-
         //Chuyen sang trang thong tin nhom
         Button profileBtn = findViewById(R.id.profileBtn);
         profileBtn.setOnClickListener(v -> {
@@ -55,6 +49,12 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //Chuyen sang trang lich su mua hang
+        binding.history.setOnClickListener(view -> {
+            Intent intent=new Intent(SettingsActivity.this,HistoryActivity.class);
+            startActivity(intent);
+        });
     }
+
 
 }

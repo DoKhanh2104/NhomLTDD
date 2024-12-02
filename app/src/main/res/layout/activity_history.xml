@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootLayout"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.OrderActivity">
+    tools:context=".Activity.HistoryActivity">
 
     <ScrollView
-        android:id="@+id/scrollViewLike"
+        android:id="@+id/scrollViewHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,25 +16,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textViewHistoryTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Danh Sách Đơn Hàng"
+                android:text="Lịch Sử Mua Hàng"
                 android:textAlignment="center"
                 android:textColor="@color/blue_grey"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewOrders"
+                android:id="@+id/historyRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false" />
         </LinearLayout>
     </ScrollView>
+
     <ImageView
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"

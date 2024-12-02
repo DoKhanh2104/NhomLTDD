@@ -1,34 +1,28 @@
 package com.example.foodapp.Domain;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Order {
     private String orderId;
-    private List<String> foodsList;
-    private double total;
-    private double tax;
-    private double delivery;
+    private ArrayList<Foods> foods;
+    private double totalPrice;
+    private long timestamp;
+    private String status;
 
-    // Constructor không tham số (Firebase yêu cầu)
-    public Order() {}
-
-    // Constructor có tham số
-    public Order(List<String> foodsList, double total, double tax, double delivery) {
-        this.foodsList = foodsList;
-        this.total = total;
-        this.tax = tax;
-        this.delivery = delivery;
+    // Constructor mặc định
+    public Order() {
     }
 
-    // Getter và setter cho các thuộc tính
-    public List<String> getFoodsList() {
-        return foodsList;
+    // Constructor với các tham số
+    public Order(String orderId, ArrayList<Foods> foods, double totalPrice, long timestamp, String status) {
+        this.orderId = orderId;
+        this.foods = foods;
+        this.totalPrice = totalPrice;
+        this.timestamp = timestamp;
+        this.status = status;
     }
 
-    public void setFoodsList(List<String> foodsList) {
-        this.foodsList = foodsList;
-    }
-
+    // Getter và Setter cho các thuộc tính
     public String getOrderId() {
         return orderId;
     }
@@ -37,27 +31,35 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public double getTotal() {
-        return total;
+    public ArrayList<Foods> getFoods() {
+        return foods;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setFoods(ArrayList<Foods> foods) {
+        this.foods = foods;
     }
 
-    public double getTax() {
-        return tax;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTax(double tax) {
-        this.tax = tax;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public double getDelivery() {
-        return delivery;
+    public long getTimestamp() {
+        return timestamp;
     }
 
-    public void setDelivery(double delivery) {
-        this.delivery = delivery;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
