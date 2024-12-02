@@ -84,7 +84,6 @@ public class OrderProgressActivity extends BaseActivity {
         binding.completeButton.setOnClickListener(v -> {
             saveOrderToFirebase();
             managmentCart.clearCart();
-            Toast.makeText(this, "Đơn hàng đã hoàn tất!", Toast.LENGTH_SHORT).show();
             Intent intent =new Intent(OrderProgressActivity.this,MainActivity.class);
             startActivity(intent);
         });
@@ -118,12 +117,14 @@ public class OrderProgressActivity extends BaseActivity {
     private double calculateTotalPrice(ArrayList<Foods> orderedFoods) {
         double totalPrice = 0;
         for (Foods food : orderedFoods) {
-            totalPrice += food.getPrice();
+            totalPrice += food.getPrice() * food.getNumberInCart();
         }
+        double shippingFee = 10.0;
+        totalPrice += shippingFee;
         return totalPrice;
     }
 
-    private void updateStep() {
+        private void updateStep() {
         switch (currentStep) {
             case 1:
                 binding.step1Icon.setColorFilter(ContextCompat.getColor(this, R.color.red));

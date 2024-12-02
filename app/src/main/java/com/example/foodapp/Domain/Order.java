@@ -9,6 +9,14 @@ public class Order {
     private long timestamp;
     private String status;
 
+    public void calculateTotalPrice(ArrayList<Foods> orderedFoods) {
+        double total = 0;
+        for (Foods food : orderedFoods) {
+            total += food.getPrice() * food.getNumberInCart();
+        }
+        // Lưu tổng vào totalPrice
+        this.totalPrice = total;
+    }
     // Constructor mặc định
     public Order() {
     }
