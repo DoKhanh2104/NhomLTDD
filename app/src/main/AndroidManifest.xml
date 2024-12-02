@@ -18,6 +18,9 @@
             android:name=".Activity.OrderProgressActivity"
             android:exported="false" />
         <activity
+            android:name=".Activity.OrderProgressActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.SettingsActivity"
             android:exported="false" />
         <activity
