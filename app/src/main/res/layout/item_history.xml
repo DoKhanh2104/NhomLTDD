@@ -23,18 +23,23 @@
                 android:id="@+id/orderIdTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:textStyle="bold"
+                android:paddingTop="8dp"
                 android:text="Mã đơn:"
                 android:textColor="@color/black"
-                android:textSize="14sp"
-                android:layout_weight="1"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/orderDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
                 android:textColor="@color/grey0"
-                android:textSize="12sp"
-                android:layout_gravity="end"/>
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -93,18 +98,24 @@
                 android:id="@+id/orderTotalTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingBottom="8dp"
                 android:text="Tổng tiền:"
-                android:textSize="14sp"
-                android:layout_weight="1"/>
+                android:textStyle="bold"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/orderStatusTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:textStyle="bold"
                 android:text="Trạng thái"
-                android:textColor="@color/green"
-                android:textSize="14sp"
-                android:layout_gravity="end"/>
+                android:textColor="@color/red"
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>

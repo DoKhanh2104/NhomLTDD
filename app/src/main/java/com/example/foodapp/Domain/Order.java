@@ -15,7 +15,7 @@ public class Order {
             total += food.getPrice() * food.getNumberInCart();
         }
         // Lưu tổng vào totalPrice
-        this.totalPrice = total;
+        this.totalPrice = Math.floor(total) ;
     }
     // Constructor mặc định
     public Order() {

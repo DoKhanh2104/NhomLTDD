@@ -32,6 +32,7 @@
                 android:id="@+id/historyRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
                 android:clipToPadding="false" />
         </LinearLayout>
     </ScrollView>

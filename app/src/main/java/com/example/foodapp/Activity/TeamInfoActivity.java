@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodapp.databinding.ActivityTeamInfoBinding;
 
-public class TeamInfoActivity  extends AppCompatActivity {
+public class TeamInfoActivity  extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
