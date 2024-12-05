@@ -17,6 +17,7 @@ public class ManagmentCart {
         this.context = context;
         this.tinyDB=new TinyDB(context);
     }
+    //Lam trong gio hang
     public void clearCart() {
         // Xóa danh sách giỏ hàng
         tinyDB.putListObject("CartList", new ArrayList<Foods>());
@@ -46,6 +47,7 @@ public class ManagmentCart {
         return tinyDB.getListObject("CartList");
     }
 
+    //Cach tinh phi
     public Double getTotalFee(){
         ArrayList<Foods> listItem=getListCart();
         double fee=0;
@@ -54,6 +56,7 @@ public class ManagmentCart {
         }
         return fee;
     }
+    //Giam so luong
     public void minusNumberItem(ArrayList<Foods> listItem,int position,ChangeNumberItemsListener changeNumberItemsListener){
         if(listItem.get(position).getNumberInCart()==1){
             listItem.remove(position);
@@ -63,6 +66,7 @@ public class ManagmentCart {
         tinyDB.putListObject("CartList",listItem);
         changeNumberItemsListener.change();
     }
+    //Tang so luong
     public  void plusNumberItem(ArrayList<Foods> listItem,int position,ChangeNumberItemsListener changeNumberItemsListener){
         listItem.get(position).setNumberInCart(listItem.get(position).getNumberInCart()+1);
         tinyDB.putListObject("CartList",listItem);

@@ -36,6 +36,7 @@ public class DetailActivity extends BaseActivity {
     private void setVariable() {
         managmentCart=new ManagmentCart(this);
         managmentFavorite = new ManagmentFavorite(this);
+        //Quay lai
         binding.backBtn.setOnClickListener(view -> finish());
 
         Glide.with(DetailActivity.this)

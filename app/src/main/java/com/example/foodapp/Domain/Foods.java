@@ -1,9 +1,12 @@
 package com.example.foodapp.Domain;
 
+import com.google.firebase.database.PropertyName;
+
 import java.io.Serializable;
 
 public class Foods implements Serializable {
 
+    @PropertyName("CategoryId")
     private int CategoryId;
     private String Description;
     private boolean BestFood;
@@ -26,10 +29,12 @@ public class Foods implements Serializable {
         return Title;
     }
 
+    @PropertyName("CategoryId")
     public int getCategoryId() {
         return CategoryId;
     }
 
+    @PropertyName("CategoryId")
     public void setCategoryId(int categoryId) {
         CategoryId = categoryId;
     }

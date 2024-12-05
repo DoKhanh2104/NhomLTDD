@@ -45,21 +45,36 @@ ActivityLoginBinding binding;
 
     private void setVariable() {
         binding.loginBtn.setOnClickListener(view -> {
-            String email =binding.userEdt.getText().toString();
-            String password=binding.passEdt.getText().toString();
-            if(!email.isEmpty() && !password.isEmpty()){
-                mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, task -> {
-                    if(task.isSuccessful()){
-                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                    }else {
-                        Toast.makeText(LoginActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng ", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }else{
+            String email = binding.userEdt.getText().toString();
+            String password = binding.passEdt.getText().toString();
+
+            if (!email.isEmpty() && !password.isEmpty()) {
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LoginActivity.this, task -> {
+                            if (task.isSuccessful()) {
+                                // Kiểm tra email và chuyển hướng theo vai trò
+                                checkUserRole(email);
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            } else {
                 Toast.makeText(LoginActivity.this, "Hãy điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             }
-
         });
+    }
+
+    // Phương thức kiểm tra vai trò dựa trên email
+    private void checkUserRole(String email) {
+        if (email.equals("admin@foodapp.com")) {
+            // Nếu là admin
+            startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+            finish();
+        } else {
+            // Nếu là user
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
     }
 
 

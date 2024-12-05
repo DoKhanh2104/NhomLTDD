@@ -46,7 +46,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.OrderVie
         // Hiển thị thông tin mã đơn hàng và ngày đặt
         holder.orderIdTextView.setText("Mã đơn: " + order.getOrderId());
         holder.orderDateTextView.setText("Ngày: " + formatDate(order.getTimestamp()));
-        holder.orderTotalTextView.setText("Tổng tiền: " + Math.floor(order.getTotalPrice())  + "$");
+        holder.orderTotalTextView.setText("Tổng tiền: " + Math.floor(order.getTotalPrice()+1)  + "$");
         holder.orderStatusTextView.setText(order.getStatus());
 
         // Xử lý hiển thị món ăn

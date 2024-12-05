@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:padding="16dp">
+
+        <!-- Tên món ăn -->
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Thông Tin Món Ăn"
+
+            android:textColor="@color/blue_grey"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:textColor="@color/blue_grey"
+            android:textColorHint="@color/blue_grey"
+            android:background="@drawable/edittext2_background"
+            android:padding="16dp"
+            android:id="@+id/edtFoodTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="Tên món ăn"
+            android:inputType="text" />
+
+        <!-- Mô tả -->
+        <EditText
+            android:textColor="@color/blue_grey"
+            android:background="@drawable/edittext2_background"
+            android:padding="16dp"
+            android:id="@+id/edtFoodDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textColorHint="@color/blue_grey"
+            android:hint="Mô tả"
+            android:inputType="text" />
+
+        <!-- Giá -->
+        <EditText
+            android:id="@+id/edtFoodPrice"
+            android:background="@drawable/edittext2_background"
+            android:padding="16dp"
+            android:textColor="@color/blue_grey"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/blue_grey"
+            android:hint="Giá"
+            android:inputType="numberDecimal" />
+
+        <!-- Đường dẫn ảnh -->
+        <EditText
+            android:textColorHint="@color/blue_grey"
+            android:textColor="@color/blue_grey"
+            android:background="@drawable/edittext2_background"
+            android:padding="16dp"
+            android:id="@+id/edtFoodImagePath"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Đường dẫn ảnh"
+            android:inputType="text" />
+
+
+        <EditText
+            android:id="@+id/edtFoodCategoryId"
+            android:background="@drawable/edittext2_background"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColorHint="@color/blue_grey"
+            android:textColor="@color/blue_grey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập mã danh mục" />
+
+        <!-- Nút Thêm món ăn -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddFood"
+                style="@android:style/Widget.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@drawable/red_button_background2"
+                android:text="Thêm món ăn" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBack"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/red_button_background2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Thoát" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

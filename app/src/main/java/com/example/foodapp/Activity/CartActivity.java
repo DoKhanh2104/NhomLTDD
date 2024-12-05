@@ -65,9 +65,9 @@ public class CartActivity extends BaseActivity {
         double percentTax=0.02; //Tinh theo phan tram
         double delivery=10; //Tinh theo tien
 
-        tax=Math.round(managmentCart.getTotalFee()*percentTax*100.0)/100;
+        tax=1.0;
         double total=Math.round((managmentCart.getTotalFee()+tax+delivery)*100)/100;
-        double itemTotal =Math.round(managmentCart.getTotalFee()*100)/100;
+        double itemTotal =Math.floor(managmentCart.getTotalFee()*100)/100;
 
         binding.totalFeeTxt.setText("$"+itemTotal);
         binding.taxTxt.setText("$"+tax);
