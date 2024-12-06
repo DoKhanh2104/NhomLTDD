@@ -66,7 +66,7 @@ public class LikeActivity extends BaseActivity {
         showEmptyListMessage();
     }
 
-    // Thiết lập các sự kiện (ví dụ: quay lại)
+    // Quay lai
     private void setVariable() {
         binding.backBtn.setOnClickListener(view -> finish());
     }

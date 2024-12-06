@@ -2,6 +2,7 @@ package com.example.foodapp.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.foodapp.Activity.DetailActivity;
+import com.example.foodapp.Activity.DetailAdminActivity;
 import com.example.foodapp.Domain.Foods;
 import com.example.foodapp.R;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +36,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         this.foodList = foodList;
     }
 
+
     @NonNull
     @Override
     public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,6 +49,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         Foods food = foodList.get(position);
         holder.foodTitle.setText(food.getTitle());
         holder.foodPrice.setText("$" + food.getPrice());
+
+
+        // Mở màn hình chi tiết món ăn khi nhấn vào item
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, DetailAdminActivity.class);
+            intent.putExtra("object", food);
+            context.startActivity(intent);
+        });
 
         Glide.with(context)
                 .load(food.getImagePath())
